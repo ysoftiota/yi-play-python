@@ -1,0 +1,3 @@
+[submodule "pyfirmata"]
+	path = my_pyfirmata
+	url = git@github.com:setnicka/pyfirmata.git
