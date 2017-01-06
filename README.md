@@ -1,8 +1,6 @@
 #Python pyfirmata examples
 
-##List of examples:
-
-### Semafor
+## Semafor
 **Included:**
 * Use digital I/O pins for LEDs
 * Use digital I/O pins in PWM mode for RGB led
@@ -14,7 +12,7 @@
 
 ![Semafor](https://rawgithub.com/setnicka/pyfirmata_examples/master/semafor.svg)
 
-### Onboard temperature and humidity sensors
+## Onboard temperature and humidity sensors
 **Included:**
 * I2C communication
 
@@ -23,3 +21,14 @@ After command to measure some value there must be some wait before reading out
 output value.
 
 **Source code:** [i2c_onboard_temperature.py](i2c_onboard_temperature.py)
+
+
+## Onboard accelerometer demo (3D OpenGL)
+**Included:**
+* I2C communication
+* Filtering values from sensors
+* 3D OpenGL demo
+
+**Source code:** [i2c_onboard_accelerometer.py](i2c_onboard_accelerometer.py)
+
+![Rotating 3D model](i2c_onboard_accelerometer_screenshot.png)
