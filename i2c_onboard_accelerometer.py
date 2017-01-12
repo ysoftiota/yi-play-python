@@ -12,10 +12,17 @@ Reading onboard accelerometer sensor with demo
 Included:
 * I2C read/write
 
-sudo pip3 install PyOpenGL
+Requires PyOpenGL:
+* Linux:
+	sudo pip3 install PyOpenGL
+* Windows:
+	download PyOpenGL .whl file from http://www.lfd.uci.edu/~gohlke/pythonlibs/
+		(official PyOpenGL windows release is broken at this moment)
+	pip3 install <PyOpenGL-3.1.1-cp36-cp36m-win_amd64.whl>
+		(downloaded wheel file)
 """
 
-board = pyfirmata.util.get_the_board(identifier='ttyACM', layout=None)
+board = pyfirmata.util.autoload_board()
 it = pyfirmata.util.Iterator(board)
 it.start()
 
@@ -41,7 +48,7 @@ LIS3DE_DATARATE_LOWPOWER_1K6HZ = 0b1000
 LIS3DE_DATARATE_LOWPOWER_5KHZ = 0b1001
 
 # 3D setup:
-ACC_FILTERING = 15
+ACC_FILTERING = 10
 X_SIZE = 1.0
 Y_SIZE = 5.0
 Z_SIZE = 2.5
@@ -103,6 +110,7 @@ acc_x_values = ValueFilter(ACC_FILTERING)
 acc_y_values = ValueFilter(ACC_FILTERING)
 acc_z_values = ValueFilter(ACC_FILTERING)
 
+
 def DrawGLScene():
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
@@ -111,7 +119,7 @@ def DrawGLScene():
 
 	# Rotate according to (filtered) accelerometer values
 	(acc_x, acc_y, acc_z) = get_acceleration()
-	time.sleep(0.02)
+	time.sleep(0.03)
 	print(" " * 50, end="\r")  # Erase line
 	print("X:", acc_x, "\tY:", acc_y, "\tZ:", acc_z, end="\r")
 
@@ -173,7 +181,7 @@ glutInit()
 glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH)
 glutInitWindowSize(640, 480)
 
-window = glutCreateWindow('Y Soft Playboard onboard accelerometer demo')
+window = glutCreateWindow(b'Y Soft Playboard onboard accelerometer demo')
 
 glutDisplayFunc(DrawGLScene)
 glutIdleFunc(DrawGLScene)

@@ -12,7 +12,7 @@ Included:
 * Use analog input for potentiometer
 """
 
-board = pyfirmata.util.get_the_board(identifier='ttyACM', layout=None)
+board = pyfirmata.util.autoload_board()
 it = pyfirmata.util.Iterator(board)
 it.start()
 

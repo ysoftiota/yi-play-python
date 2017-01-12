@@ -9,11 +9,13 @@ Included:
 * I2C read/write
 """
 
-board = pyfirmata.util.get_the_board(identifier='ttyACM', layout=None)
+
+board = pyfirmata.util.autoload_board()
 it = pyfirmata.util.Iterator(board)
 it.start()
 
 SENSOR_ADDRESS = 0x40
+
 
 def get_temperature():
 	board.i2c.send(SENSOR_ADDRESS, [0xF3])
