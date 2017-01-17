@@ -22,7 +22,7 @@ Requires PyOpenGL:
 		(downloaded wheel file)
 """
 
-board = pyfirmata.util.autoload_board()
+board = pyfirmata.util.autoload_board(ports_filter=None)
 it = pyfirmata.util.Iterator(board)
 it.start()
 
