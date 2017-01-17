@@ -32,3 +32,13 @@ output value.
 **Source code:** [i2c_onboard_accelerometer.py](i2c_onboard_accelerometer.py)
 
 ![Rotating 3D model](i2c_onboard_accelerometer_screenshot.png)
+
+
+## RFM69 radio
+**Included:**
+* Own sysexes to communicate with the onboard radio chip
+* Library [RFM69](https://github.com/LowPowerLab/RFM69) and **YiPlayFirmataPlus** needed
+* Configuring radio
+* Sending and receiving messages
+
+**Source code:** [radio_test.py](radio_test.py)
