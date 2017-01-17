@@ -9,6 +9,36 @@ board = pyfirmata.util.autoload_board(ports_filter=None)
 it = pyfirmata.util.Iterator(board)
 it.start()
 
+########################################################################
+# Own sysexes:
+#
+# Configuration of networkID, nodeID and encrypt passphrase
+# Password is optional, but when used, it must be 16 bytes long
+# 0  START_SYSEX        (0xF0)
+# 1  USR_CMD_RF_CONFIG  (0x02)
+# 2  networkID LSB
+# 3  networkID MSB
+# 4  nodeID LSB
+# 5  nodeID MSB
+# 6  (optional) first password char LSB
+# 7  (optional) first password char MSB
+# ... additional password chars at positions 8-37
+# 6/37 END_SYSEX (0xF7)
+#
+# Data to send or received data
+# (when sending data nodeID is target, when receiving data nodeID is source)
+# 0  START_SYSEX        (0xF0)
+# 1  USR_CMD_RF_DATA    (0x03)
+# 2  nodeID LSB
+# 3  nodeID MSB
+# 4  RSSI LSB (only used for received message)
+# 5  RSSI MSB (only used for received message)
+# 4/6 first byte LSB
+# 5/7 first byte MSB
+# ... additional bytes
+# N  END_SYSEX (0xF7)
+########################################################################
+
 
 def radio_data_received(nodeID_lsb, nodeID_msb, RSSI_lsb, RSSI_msb, *data):
 	nodeID = from_two_bytes([nodeID_lsb, nodeID_msb])
