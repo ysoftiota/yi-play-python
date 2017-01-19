@@ -22,7 +22,7 @@ Requires PyOpenGL:
 		(downloaded wheel file)
 """
 
-board = pyfirmata.util.autoload_board(ports_filter=None)
+board = pyfirmata.util.autoload_board(ports_filter="YSoft IOTA Play")
 it = pyfirmata.util.Iterator(board)
 it.start()
 

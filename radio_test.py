@@ -5,7 +5,7 @@ from my_pyfirmata.pyfirmata.util import from_two_bytes, to_two_bytes, two_byte_i
 USR_CMD_RF_CONFIG = 0x02
 USR_CMD_RF_DATA = 0x03
 
-board = pyfirmata.util.autoload_board(ports_filter=None)
+board = pyfirmata.util.autoload_board(ports_filter="YSoft IOTA Play")
 it = pyfirmata.util.Iterator(board)
 it.start()
 
@@ -43,8 +43,9 @@ it.start()
 def radio_data_received(nodeID_lsb, nodeID_msb, RSSI_lsb, RSSI_msb, *data):
 	nodeID = from_two_bytes([nodeID_lsb, nodeID_msb])
 	RSSI = from_two_bytes([RSSI_lsb, RSSI_msb])
+	RSSI -= 256
 	decoded_data = two_byte_iter_to_bytes(data)
-	print(nodeID, RSSI, bytes(decoded_data).decode())
+	print("Message from {0} [RSSI {1}dBm]: {2}".format(nodeID, RSSI, bytes(decoded_data).decode()))
 
 board.add_cmd_handler(USR_CMD_RF_DATA, radio_data_received)
 
@@ -59,6 +60,9 @@ def radio_config(networkID, nodeID, password=None):
 
 
 def radio_send(targetID, data):
+	if isinstance(data, str):
+		data = bytearray(data, 'utf-8')
+
 	data_to_send = []
 	data_to_send.extend(to_two_bytes(targetID))
 	for c in data:

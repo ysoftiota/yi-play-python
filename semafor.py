@@ -12,7 +12,7 @@ Included:
 * Use analog input for potentiometer
 """
 
-board = pyfirmata.util.autoload_board()
+board = pyfirmata.util.autoload_board(ports_filter="YSoft IOTA Play")
 it = pyfirmata.util.Iterator(board)
 it.start()
 
