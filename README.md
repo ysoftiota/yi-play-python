@@ -1,5 +1,13 @@
 #Python pyfirmata examples
 
+## Basic example with onboard LEDs and buttons
+**Included:**
+* Use digital I/O pins for onboard LEDs (in inverse logic)
+* Use digital I/O pins for onboard buttons (in inverse logic)
+
+**Source code:** [start.py](start.py)
+
+
 ## Semafor
 **Included:**
 * Use digital I/O pins for LEDs
